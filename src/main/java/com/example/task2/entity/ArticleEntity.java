@@ -22,10 +22,7 @@ public class ArticleEntity{
     @Column(name = "id", updatable = false, unique = true)
     private UUID id;
 
-    @Column (name = "name")
     private String name;
-
-    @Column (name = "text")
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY)

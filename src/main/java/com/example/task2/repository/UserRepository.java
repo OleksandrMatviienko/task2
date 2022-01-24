@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 public interface UserRepository extends CrudRepository<UserEntity, UUID> {
-    UserEntity findByEmail(String name);
+    UserEntity findByEmail(String email);
+    UserEntity findByName(String name);
 }

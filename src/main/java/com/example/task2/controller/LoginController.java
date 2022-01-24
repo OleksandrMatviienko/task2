@@ -24,6 +24,16 @@ public class LoginController {
         }
     }
 
+    @GetMapping("/login")
+    public ResponseEntity loginUser () {
+        try {
+            //userService.loginUser(user);
+            return ResponseEntity.ok("User was logged");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Error was occurred");
+        }
+    }
+
     @PostMapping("/register")
     public ResponseEntity registerUser (@RequestBody UserEntity user) {
         try {

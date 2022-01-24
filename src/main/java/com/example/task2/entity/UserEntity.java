@@ -2,30 +2,27 @@ package com.example.task2.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.util.UUID;
 
 @Entity
-@Table (name = "users")
+@Table (name = "users",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "id"),
+            @UniqueConstraint(columnNames = "email")})
 public class UserEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", updatable = false, nullable = false, unique = true)
     private UUID id;
 
-    @Column (name = "email", nullable = false, unique = true)
     private String email;
-
-    @Column (name = "name")
     private String name;
-
-    @Column (name = "password")
     private String password;
 
     public UserEntity() {
