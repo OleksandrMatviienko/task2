@@ -6,7 +6,7 @@ COPY mvnw .
 COPY pom.xml .
 COPY src src
 
-RUN ./mvnw install -DskipTests
+RUN ./mvnw package -DskipTests
 
 FROM openjdk:17.0.2-jdk
 COPY --from=build /task2/target/spring-api-docker.jar spring-api-docker.jar
