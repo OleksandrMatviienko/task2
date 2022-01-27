@@ -1,5 +1,6 @@
 package com.example.task2.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "articles")
 public class ArticleEntity{
@@ -28,40 +30,4 @@ public class ArticleEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     private UserEntity userEntity;
-
-    public ArticleEntity() {
-
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 }
