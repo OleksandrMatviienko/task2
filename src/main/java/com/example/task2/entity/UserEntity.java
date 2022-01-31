@@ -1,12 +1,10 @@
 package com.example.task2.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -14,6 +12,8 @@ import java.util.UUID;
         uniqueConstraints = {
             @UniqueConstraint(columnNames = "id"),
             @UniqueConstraint(columnNames = "email")})
+@Data
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
@@ -21,42 +21,15 @@ public class UserEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
 
-    private String email;
     private String name;
+
+    private String email;
+
     private String password;
 
-    public UserEntity() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public UserEntity(String name, String email, String password) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+        this.email = email;
         this.password = password;
     }
 }
