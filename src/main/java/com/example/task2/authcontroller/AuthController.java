@@ -39,7 +39,4 @@ public class AuthController {
 
         return authService.authenticateUser(signUpRequest.getEmail(), signUpRequest.getPassword());
     }
-
-
-
 }
