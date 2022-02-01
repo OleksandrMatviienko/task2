@@ -49,7 +49,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, apiError, headers, HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler({ BadCredentialsException.class })
+    @ExceptionHandler({BadCredentialsException.class})
     public ResponseEntity<Object> handleBadCredentialsException(final Exception ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
@@ -58,16 +58,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler({ UserAlreadyExistException.class })
-    public ResponseEntity<Object> handleUserAlreadyExistException(final Exception ex, final WebRequest request) {
-        logger.info(ex.getClass().getName());
-        logger.error("error", ex);
-
-        final ApiError apiError = new ApiError(ex.getLocalizedMessage());
-        return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler({ UserWasNotFoundException.class, ArticleWasNotFoundException.class })
+    @ExceptionHandler({UserWasNotFoundException.class, ArticleWasNotFoundException.class})
     public ResponseEntity<Object> handleUserWasNotFoundException(final Exception ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
@@ -76,7 +67,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({ MethodArgumentTypeMismatchException.class })
+    @ExceptionHandler({UserAlreadyExistException.class})
     public ResponseEntity<Object> handleConstraintViolationException(final Exception ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
@@ -85,12 +76,21 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({ ArticleBelongToAnotherUserException.class })
+    @ExceptionHandler({ArticleBelongToAnotherUserException.class})
     public ResponseEntity<Object> handleArticleBelongToAnotherUserException(final Exception ex, final WebRequest request) {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
 
         final ApiError apiError = new ApiError(ex.getLocalizedMessage());
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
+    public ResponseEntity<Object> handleMethodArgumentTypeMismatchException(final Exception ex, final WebRequest request) {
+        logger.info(ex.getClass().getName());
+        logger.error("error", ex);
+
+        final ApiError apiError = new ApiError("Enter valid UUID in your request path");
+        return new ResponseEntity<Object>(apiError, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 }

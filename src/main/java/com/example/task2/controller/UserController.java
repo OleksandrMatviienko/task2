@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/article")
-    public ResponseEntity getArticlesForUserWithId(@Valid @PathVariable @Pattern(regexp = UUID_REGEX, message = "Invalid UUID in id") UUID userId) throws UserWasNotFoundException {
+    public ResponseEntity getArticlesForUserWithId(@Valid @PathVariable @Pattern(regexp = UUID_REGEX, message = "Enter valid UUID in your request path") UUID userId) throws UserWasNotFoundException {
 
         return ResponseEntity.ok().body(articleService.getArticlesForUserWithId(userId));
 
