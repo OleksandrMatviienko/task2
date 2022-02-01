@@ -8,7 +8,6 @@ import com.example.task2.service.ArticleService;
 import com.example.task2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +19,6 @@ import static com.example.task2.util.ValidationConstants.UUID_REGEX;
 
 @RestController
 @RequestMapping("/api/article")
-@Validated
 public class ArticlesController {
 
     final UserService userService;
