@@ -1,4 +1,4 @@
-package com.example.task2.authcontroller;
+package com.example.task2.service;
 
 import com.example.task2.entity.UserEntity;
 import com.example.task2.exception.UserAlreadyExistException;

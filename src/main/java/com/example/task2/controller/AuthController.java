@@ -1,5 +1,6 @@
-package com.example.task2.authcontroller;
+package com.example.task2.controller;
 
+import com.example.task2.service.AuthService;
 import com.example.task2.entity.UserEntity;
 import com.example.task2.exception.UserAlreadyExistException;
 import com.example.task2.payload.JwtResponse;
