@@ -12,7 +12,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "articles", schema = "public")
 @SQLDelete(sql = "UPDATE articles SET deleted = true WHERE id=?")
-@Where(clause = "deleted = False")
+@Where(clause = "deleted = false")
 @Data
 @NoArgsConstructor
 public class ArticleEntity{
