@@ -33,11 +33,13 @@ public class ArticleService {
 
     }
 
-    public ArticleDTO createArticle(ArticleEntity articleEntity){
+    public UUID createArticle(ArticleEntity articleEntity){
 
         articleEntity.setUserEntity(getCurrentUser());
 
-        return ArticleDTO.toArticleDTO(articleRepository.save(articleEntity));
+        ArticleEntity article = articleRepository.save(articleEntity);
+
+        return article.getId();
 
     }
 
@@ -63,13 +65,15 @@ public class ArticleService {
 
     public UUID deleteArticleById(UUID articleId) throws ArticleBelongToAnotherUserException, ArticleWasNotFoundException {
 
-        UserEntity currentUser = getCurrentUser();
-
+        System.out.println("-------------------------");
+        System.out.println(articleRepository.existsById(articleId));
         if (!articleRepository.existsById(articleId)){
             throw new ArticleWasNotFoundException("Article was Not Found with id: " + articleId);
         }
 
-        if (currentUser.getId().equals(articleRepository.findByUserEntity(currentUser))){
+        UserEntity currentUser = getCurrentUser();
+
+        if (articleRepository.findById(articleId).get().getUserEntity().equals(currentUser)){
 
             articleRepository.deleteById(articleId);
 
