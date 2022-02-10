@@ -4,11 +4,11 @@ services:
     image: 'spring-api-docker.jar'
     build: .
     ports:
-      - "8080:8080"
+      - "8088:8088"
     depends_on:
       - DB
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://DB:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://DB:5432/springdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -21,3 +21,6 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=springdb
+
+networks:
+  network: {}
